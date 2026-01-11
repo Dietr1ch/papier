@@ -1,0 +1,15 @@
+md-bold {
+  font-weight: bold;
+}
+md-italic {
+  font-style: italic;
+}
+md-underline {
+  text-decoration: underline;
+}
+
+md-code,
+md-inlinecode {
+  color: lightblue;
+  font-family: monospace;
+}

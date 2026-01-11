@@ -1,0 +1,23 @@
+pp-subdoc:hover {
+  font-weight: bold;
+}
+pp-tag {
+  font-style: oblique;
+}
+pp-type {
+  font-style: italic;
+}
+
+/* Papier style */
+/* NOTE: This is tentative */
+/* pp-bold { */
+/*   font-weight: bold; */
+/* } */
+/* NOTE: This is tentative */
+/* pp-italics { */
+/*   font-style: italic; */
+/* } */
+/* NOTE: This is tentative */
+/* pp-underline { */
+/*   text-decoration: underline; */
+/* } */

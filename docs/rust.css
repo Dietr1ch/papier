@@ -1,0 +1,127 @@
+/*
+ Rust style
+
+ Stolen from rust-analyzer highlight
+*/
+
+rs-lifetime {
+  color: #dfaf8f;
+  font-style: italic;
+}
+rs-label {
+  color: #dfaf8f;
+  font-style: italic;
+}
+rs-comment {
+  color: #7f9f7f;
+}
+rs-documentation {
+  color: #629755;
+}
+rs-intra_doc_link {
+  font-style: italic;
+}
+rs-injected {
+  opacity: 0.65;
+}
+rs-struct,
+.enum {
+  color: #7cb8bb;
+}
+rs-enum_variant {
+  color: #bde0f3;
+}
+rs-string_literal {
+  /* color: #cc9393; */
+  color: hsl(120 100% 30%);
+}
+rs-field {
+  color: #94bff3;
+}
+rs-function {
+  /* color: #93e0e3; */
+  color: hsl(280 100% 50%);
+}
+rs-parameter {
+  color: #94bff3;
+}
+rs-text {
+  color: #dcdccc;
+}
+rs-type {
+  color: #7cb8bb;
+}
+rs-builtin_type {
+  color: #8cd0d3;
+}
+rs-type_param {
+  color: #dfaf8f;
+}
+rs-attribute {
+  color: #94bff3;
+}
+rs-numeric_literal {
+  color: #bfebbf;
+}
+rs-bool_literal {
+  color: #bfe6eb;
+}
+rs-macro {
+  /* color: #94bff3; */
+  color: hsl(220 100% 50%);
+}
+rs-proc_macro {
+  color: #94bff3;
+  text-decoration: underline;
+}
+rs-derive {
+  color: #94bff3;
+  font-style: italic;
+}
+rs-module {
+  color: #afd8af;
+}
+rs-value_param {
+  color: #dcdccc;
+}
+rs-variable {
+  color: #dcdccc;
+}
+rs-format_specifier {
+  color: #cc696b;
+}
+rs-mutable {
+  text-decoration: underline;
+}
+rs-escape_sequence {
+  color: #94bff3;
+}
+rs-keyword {
+  /* color: #f0dfaf; */
+  color: hsl(220 100% 60%);
+  font-weight: bold;
+}
+rs-control {
+  font-style: italic;
+}
+rs-reference {
+  font-style: italic;
+  font-weight: bold;
+}
+rs-const {
+  font-weight: bolder;
+}
+rs-unsafe {
+  color: #bc8383;
+}
+rs-deprecated {
+  text-decoration: line-through;
+}
+rs-invalid_escape_sequence {
+  color: #fc5555;
+  text-decoration: wavy underline;
+}
+rs-unresolved_reference {
+  color: #fc5555;
+  text-decoration: wavy underline;
+}

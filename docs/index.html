@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+		<title>Papier document language</title>
+		<!-- TODO: Get these trimmed and inlined -->>
+		<link rel="stylesheet" type="text/css" href="reset.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="md.css">
+		<link rel="stylesheet" type="text/css" href="rust.css">
+		<link rel="stylesheet" type="text/css" href="papier.css">
+		</style>
+	</head>
+
+	<body>
+		<div id="papier">
+			<pre>
+				<!-- TODO: Generate this code using Papier's grammar -->
+				<code class="item">
+This is a document showcasing Papier, a simple recursive document language in development.
+
+<pp-subdoc># What's cool about Papier? <pp-type>@org</pp-type> {
+<mark>	</mark>- Papier allows embedding sub-documents, which might be in different text languages
+<mark>	</mark>- The language is tiny
+<mark>	</mark>	- Simpler languages have fewer footguns
+<mark>	</mark>	- Smaller languages can be more performant
+<mark>	</mark>- The language is powerful
+<mark>	</mark> - Anything you'd like from another language? Just embed a sub-document in that language.
+}</pp-subdoc>
+
+<pp-subdoc># Defining Papier <pp-tag>#example</pp-tag> {
+<mark>	</mark>In Papier there's only text and sub-documents.
+<mark class="optional_tab">	</mark>
+<mark>	</mark># Sub-documents, {
+<mark>	</mark>	- Declared with a leading number sign (#)
+<mark>	</mark>	- May have a single-line Unicode title. Empty titles are be fine.
+<mark>	</mark>	- May have tags.
+<mark>	</mark>		- Tags are /[a-zA-Z][_a-zA-Z0-9]*/ words preceded by a hashtag symbol (#)
+<mark>	</mark>			- Q: What about unicode tags? #💩
+<mark>	</mark>				- Yeah, maybe not full-freedom, at least emoji and faux whitespace shouldn't be whitelisted.
+<mark>	</mark>			- Tags may be part of the title
+<mark>	</mark>			- "#TODO do something #cool" is a title embedding 2 tags
+<mark>	</mark>		- Semantics of the tags are up to the tools using them.
+<mark>	</mark>			- An obvious one is using #TODO for an agenda tool
+<mark>	</mark>	- May have a single type definition, which defaults to Papier
+<mark>	</mark>		- Types are /[a-zA-Z][_a-zA-Z0-9]*/ words preceded by an at symbol (@)
+<mark>	</mark>		- The type defines how to parse the sub-document, but you should be
+<mark>	</mark>			free to skip a sub-document of a language you don't support.
+<mark>	</mark>		- Not having a sub-document type means the sub-document is also a Papier document.
+<mark>	</mark>	- May have a tab-indented block after them
+<mark>	</mark>		- This defines their content.
+<mark>	</mark>	- May contain un-indented blank lines, which will be assumed to have
+<mark>	</mark>		the right indentation for the sub-document. This allows trimming trailing whitespace.
+<mark>	</mark>}
+<mark class="optional_tab">	</mark>
+<mark>	</mark># Open questions {
+<mark>	</mark>	- Are long lines a problem? I think not
+<mark>	</mark>	- What escape sequences are needed?
+<mark>	</mark> - Do we want maps? Tags are value-less entries, is #key=value too ugly?
+<mark>	</mark>		- It might be too expressive, now how do you embed a Papier document in your value?
+<mark>	</mark>		- Where's the line to be a text document file instead of a data file like JSON or KDL?
+<mark>	</mark>	 - Are there quirks in the language?
+<mark>	</mark>		- We don't know yet. That's why we WILL take a year to think about it.
+<mark>	</mark>			- This is why a language you could write in a weekend maybe shouldn't be written in a weekend.
+<mark>	</mark>}
+<mark class="optional_tab">	</mark>
+<mark>	</mark># #TODO Handwavy specification
+<mark class="optional_tab">	</mark>
+<mark>	</mark># #TODO Formal specification {
+<mark>	</mark>}
+}</pp-subdoc>
+
+<pp-subdoc># Examples {
+<mark>	</mark># This is it! #DONE <pp-type>@org-agenda</pp-type> {
+<mark>	</mark>	CLOSED: [2026-01-10 Sa 22:51]
+<mark>	</mark>}
+<mark class="optional_tab">	</mark>
+<mark>	</mark># Example code block <pp-type>@rs</pp-type> {
+<mark>	</mark>	<rs-keyword>fn</rs-keyword> <rs-function>main</rs-function>(){
+<mark>	</mark>		<rs-macro>println!</rs-macro>(<rs-string_literal>"Papier rocks!"</rs-string_literal>);
+<mark>	</mark>	}
+<mark>	</mark>}
+<mark class="optional_tab">	</mark>
+<mark>	</mark># Output #result <pp-type>@console</pp-type> {
+<mark>	</mark>	Papier rocks!
+<mark>	</mark>}
+}</pp-subdoc>
+
+<pp-subdoc># Tentative features {
+<mark>	</mark># Formatting text <pp-type>@md</pp-type> {
+<mark>	</mark>	Allowing *bold*, /italics/, _underlines_, and `literal` text might be cool.
+<mark>	</mark>	It feels silly to have to rely on a markdown sub-document for those.
+<mark>	</mark>	But it's just something that I don't want to decide right on the first day of this language.
+<mark>	</mark>	May also bring in parsing subtleties.
+<mark>	</mark>	- Let's check what Markdown, `org-mode` do here and what they regret defining.
+<mark class="optional_tab">	</mark>
+<mark>	</mark>	Defining lists might also be useful.
+<mark class="optional_tab">	</mark>
+<mark>	</mark>	Is defining URLs/IRIs an overkill? So far, I think so.
+<mark>	</mark>}
+<mark class="optional_tab">	</mark>
+<mark>	</mark># Raw blocks @org <mark class="rbm">!EoF{</mark>
+- This allows easy concatenation of files.
+- It may also allow embedding binary files
+	- Wouldn't it be cool to share an image or a GIF within your document?
+	- What about embedded CSV or parquet data?
+- Although it makes parsing the parent documents harder.
+  - Now you can't only skip empty lines and lines starting with N tabs.
+<mark class="rbm">!EoF}</mark>
+}</pp-subdoc>
+
+<pp-subdoc># Thoughts {
+<mark>	</mark>- How the language should FEEL when writing
+<mark>	</mark>  - for markdown users: Markdown with indented {blocks}
+<mark>	</mark>  - for org-mode users: Org-mode with less syntax variety and markdown-style decorations.
+<mark>	</mark>  - for plain text users: A text file with lots of required tabs the editor puts (through the LSP).
+<mark>	</mark>- You can write anything in paper, but can't write paper into anything.
+<mark>	</mark> - Papier is best used as an outer, container language.
+<mark>	</mark>- Papier should be simple, yet powerful through sub-documents using the right language for the task at hand.
+}</pp-subdoc>
+
+<pp-subdoc># Ideas @md {
+<mark>	</mark>- Have a Papier file mounted in a [VFS](<a href="https://en.wikipedia.org/wiki/Virtual_file_system">https://en.wikipedia.org/wiki/Virtual_file_system</a>)
+<mark>	</mark>  - Wouldn't it be cool to append items to your task list?
+<mark>	</mark>  - Querying or editing a sub-document would be easier.
+<mark>	</mark>- Turn a directory into a Papier file
+}</pp-subdoc>
+
+
+<pp-subdoc># Status <pp-type>@org</pp-type> {
+<mark>	</mark>- [X] Publish a ~v0~
+<mark>	</mark>- [ ] Write a formal grammar
+<mark>	</mark>- [ ] Write a validator
+<mark>	</mark>- [ ] Write an LSP
+<mark>	</mark>- [ ] Figure out how to make tools recurse into sub-documents
+<mark>	</mark>  - I'm pretty sure rendering and running a nested LSP for CSS within HTML is a mess right now.
+<mark>	</mark>- [ ] Build a proper website
+<mark>	</mark>  - Make sure to have cool railroad diagrams like JSON and Postgres.
+<mark>	</mark>- [ ] Publish a ~v0~
+}</pp-subdoc>
+
+
+<pp-subdoc># References <pp-type>@md</pp-type> {
+<mark>	</mark>- [org-mode](<a href="https://orgmode.org/">https://orgmode.org/</a>)
+<mark>	</mark>- [JSON](<a href="https://www.json.org/json-en.html">https://www.json.org/json-en.html</a>)
+<mark>	</mark>- [HN| org-mode syntax is one of the most reasonable markup languages](<a
+	href="https://news.ycombinator.com/item?id=46564116">https://news.ycombinator.com/item?id=46564116</a>)
+}</pp-subdoc>
+				</code>
+			</pre>
+		</div>
+	</body>
+
+</html>

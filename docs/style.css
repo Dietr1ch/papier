@@ -1,0 +1,55 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+code {
+  font: 1em monospace;
+}
+
+pre {
+  background-color: hsl(0 0% 90%); /* gray */
+
+  padding: 10px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+pre {
+  padding: 0.4em;
+}
+
+pre > code {
+  white-space: pre-wrap;
+  tab-size: 2;
+}
+
+mark {
+  background-color: transparent;
+}
+mark {
+  background-color: hsl(60 100% 90%); /* pale yellow */
+}
+mark.rbm {
+  background-color: hsl(20 100% 90%); /* pale red-orange */
+}
+
+.optional_tab {
+  background-color: hsl(0 0% 80%); /* gray */
+}
+
+.item {
+  width: 10em;
+}
+
+#papier {
+  /* Center the block */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Cover the full content area of the frame */
+  width: 100%;
+}

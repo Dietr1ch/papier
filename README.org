@@ -34,6 +34,9 @@ have titles, tags, and may be in an external format.
       - It's easier to author a document where lines are sentences/ideas rather
         than random parts of a paragraph.
 
+* Docs
+- [[https://papier-lang.github.io/papier/][papier-lang.github.io/papier/]]
+
 
 * References
 - [[https://gist.github.com/Dietr1ch/0c650d0246442519a5735fd970d3a5ec][gist| First publicly available Papier document]]
