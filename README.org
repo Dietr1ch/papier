@@ -1,11 +1,22 @@
 #+title: Papier: a simple recursive document language
 
 * Info
-Papier is a language where you only have text and sub-documents. Sub-documents
-have titles, tags, and may be in an external format.
+Papier is a strict, small markup language where you only have text and /sub-documents/.
+Sub-documents have titles, tags, and may have content in a different format.
+
+** Why a new language?
+There's many great languages out there, way to many not so great ones.
+Why bother? I myself already hate the proliferation of languages without a clear
+goal to tackle that existing languages do a poor job on it.
+
+I enjoy using ~org-mode~, I wish it was more widely spread, but I do understand how pointless is to try to take it out of Emacs.
+I'd love to see a language that combines the org's bullet/heading tree and extensibility with the simplicity of a language like ~JSON~.
+
+This language is my attempt at creating that.
+It's even simpler than ~JSON~, and through few features and recursion, powerful enough to express org-mode trees without being too complex on its own.
 
 ** Inspiration
-- Emacs' ~org-mode~
+- Emacs' [[https://orgmode.org/][~org-mode~]]
   - Tree
     - Tree-based operations
   - Tags
@@ -17,22 +28,78 @@ have titles, tags, and may be in an external format.
       - Metadata
     - Tables
 
-- JSON' simplicity
-  - It's hard to take things away from JSON
+- [[https://www.json.org/json-en.html][~JSON'~]] simplicity
+  - It's hard to take things away from it without losing important data-representation features.
   - Powerful because of recursion
   - Fast because it's a small language
   - Simple to learn because it's a small language
   - Although IMO it's too lax on indentation (and types too, but that's a data language).
 
-- Markdown's readability
+- [[https://commonmark.org/][Markdown's]] readability
   - Simple formatting, meant to be readable in raw text.
+  - Already familiar to most.
+    - This is something to exploit if possible.
+  - Already a mess because of the lack of early agreement and formality.
+    - This is a mistake to avoid.
 
 - "smart" tabs
   - Tabs indent semantically, spaces align
     - Line width might be a problem, but we have line wrapping and stupidly wide screens nowadays.
     - Randomly breaking lines because of a width issue breaks semantics.
-      - It's easier to author a document where lines are sentences/ideas rather
-        than random parts of a paragraph.
+      - It's easier to author a document where lines are sentences/ideas rather than random parts of a paragraph.
+        - A line swap means reorder my idea/argument, not bork my sentence.
+
+*** Name - Why Papier?
+Real-life paper has been the ultimate canvas for visual expression
+
+- Simple
+- Liberating
+  - You can write in any language, you can doodle, you can paint.
+- Recursive
+  - Lets you compose your documents.
+  - Everyone hates un-stackable things, [[https://img-9gag-fun.9cache.com/photo/a4dQ4w1_460sv.mp4][even otters]].
+- Universal
+  - For a while widely available
+  - All of the western world has a similar word for it.
+    - Maybe the same is true for the whole world? The western world didn't even invent it.
+
+** Goals
+*** Design the language
+- Simple
+- Strict
+- Powerful
+  - Recursive
+  - External format on sub-documents let you shop for the right features
+    - Other text formats
+    - Even binary formats. No need to have the pictures next to the text file.
+- Careful and intentional when adding complexity ([[https://xkcd.com/927][#927]])
+  - This means slow development. Don't expect Papier to be ready in 2026
+    - Yes, I know it can be written in a weekend.
+      - Slowly, I'm in a hurry -- Napoleon(?)
+      - See Javascript. Unfathomable man-hours wasted because of mistakes made too early.
+  - (I wanted to use thoughtful, but a PoS made a meme out of it)
+
+*** Have a strict parser
+- Have a strict parser defining the language
+  - The one and only parser.
+
+*** Have a lenient authoring tooling
+It should be trivial to author valid files.
+This requires a lenient parser, or strict and widely available tooling. I think
+nowadays ~tree-sitter~ makes the second option available.
+
+Tools,
+- Do-what-I-mean recursive descent lenient parser/fixer
+- Validator
+- [[https://en.wikipedia.org/wiki/Language_Server_Protocol][LSP]] server
+
+*** Have powerful tools
+**** Allow for new kinds of tools
+- Easy conversion Papier <-> Directory
+  - Mount Papier as a [[https://en.wikipedia.org/wiki/Virtual_file_system][VFS]]
+    - Append into a sub-document (through it's path/ID)
+  - Turn a directory into a Papier file
+  - Append a TODO into your task sub-document (~echo "What?" > agenda.pp/TODOs.tasks~)
 
 * Docs
 - [[https://papier-lang.github.io/papier/][papier-lang.github.io/papier/]]
