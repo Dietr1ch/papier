@@ -83,6 +83,8 @@ Real-life paper has been the ultimate canvas for visual expression
 - Have a strict parser defining the language
   - The one and only parser.
 
+[[https://github.com/papier-lang/tree-sitter-papier][~tree-sitter~ grammar]]
+
 *** Have a lenient authoring tooling
 It should be trivial to author valid files.
 This requires a lenient parser, or strict and widely available tooling. I think
