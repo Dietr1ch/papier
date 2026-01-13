@@ -5,3 +5,10 @@
 
 # Git
 !.gitignore
+
+
+# Project
+!.envrc.example
+
+## Jekyll
+_site
